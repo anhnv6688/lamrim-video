@@ -1,0 +1,5 @@
+node_modules/
+.remotion/
+out/still-*.png
+# public/ được remotion.config.ts sinh lại từ assets/, data/, audio/
+public/
