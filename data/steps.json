@@ -1,0 +1,390 @@
+{
+  "title": "Quán tưởng ruộng phước cây quy y · Lamrim 45",
+  "image": "assets/thangka.jpg",
+  "imageSize": [
+    1418,
+    2160
+  ],
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "viewportHeight": 1600
+  },
+  "coordinates": "camera/spotlight are fractions of image width (x) and height (y); zoom 1 = whole image fits the 1080x1600 viewport",
+  "steps": [
+    {
+      "id": 1,
+      "duration": 8,
+      "camera": {
+        "x": 0.5,
+        "y": 0.5,
+        "zoom": 1.0
+      },
+      "spotlight": [],
+      "captions": [
+        "Trước khi tu tập, chúng ta quán tưởng ruộng phước, rồi lễ lạy và cúng dường để tích lũy vô lượng phước báu."
+      ],
+      "narration": "Trước khi tu tập, chúng ta quán tưởng ruộng phước, rồi lễ lạy và cúng dường để tích lũy vô lượng phước báu."
+    },
+    {
+      "id": 2,
+      "duration": 8,
+      "camera": {
+        "x": 0.5,
+        "y": 0.5,
+        "zoom": 1.0
+      },
+      "spotlight": [],
+      "captions": [
+        "Từ giữa hai chân mày, nhìn thẳng ra phía trước, không cao quá, không thấp quá. Ruộng phước hiện ra ngay trước mặt."
+      ],
+      "narration": "Từ giữa hai chân mày, nhìn thẳng ra phía trước, không cao quá, không thấp quá. Ruộng phước hiện ra ngay trước mặt."
+    },
+    {
+      "id": 3,
+      "duration": 10,
+      "camera": {
+        "x": 0.4924,
+        "y": 0.4346,
+        "zoom": 2.0
+      },
+      "spotlight": [
+        {
+          "shape": "rect",
+          "x0": 0.3588,
+          "y0": 0.3996,
+          "x1": 0.626,
+          "y1": 0.462
+        }
+      ],
+      "captions": [
+        "Trước mặt hiện ra một tòa ngồi rộng lớn, do tám con sư tử khiêng."
+      ],
+      "narration": "Trước mặt hiện ra một tòa ngồi rộng lớn, do tám con sư tử khiêng."
+    },
+    {
+      "id": 4,
+      "duration": 10,
+      "camera": {
+        "x": 0.4924,
+        "y": 0.4171,
+        "zoom": 2.0
+      },
+      "spotlight": [
+        {
+          "shape": "rect",
+          "x0": 0.374,
+          "y0": 0.3946,
+          "x1": 0.6107,
+          "y1": 0.4396
+        }
+      ],
+      "captions": [
+        "Trên tòa là đài sen. Trên đài sen là đài mặt trời, trên cùng là đài mặt trăng màu trắng."
+      ],
+      "narration": "Trên tòa là đài sen. Trên đài sen là đài mặt trời, trên cùng là đài mặt trăng màu trắng."
+    },
+    {
+      "id": 5,
+      "duration": 12,
+      "camera": {
+        "x": 0.4924,
+        "y": 0.3447,
+        "zoom": 1.7
+      },
+      "spotlight": [
+        {
+          "shape": "ellipse",
+          "x0": 0.3588,
+          "y0": 0.2572,
+          "x1": 0.626,
+          "y1": 0.4321
+        }
+      ],
+      "captions": [
+        "Trên đó là Đức Phật Thích Ca, thân vàng ròng, tay phải xúc địa, tay trái nâng bình bát cam lồ, ngồi kiết già, tỏa ánh sáng rực rỡ."
+      ],
+      "narration": "Trên đó là Đức Phật Thích Ca, thân vàng ròng, tay phải xúc địa, tay trái nâng bình bát cam lồ, ngồi kiết già, tỏa ánh sáng rực rỡ."
+    },
+    {
+      "id": 6,
+      "duration": 9,
+      "camera": {
+        "x": 0.4924,
+        "y": 0.3447,
+        "zoom": 1.7
+      },
+      "spotlight": [
+        {
+          "shape": "ellipse",
+          "x0": 0.3588,
+          "y0": 0.2572,
+          "x1": 0.626,
+          "y1": 0.4321
+        }
+      ],
+      "captions": [
+        "Hình tướng là Đức Phật Thích Ca, nhưng bản thể chính là đạo sư, ân sư của mình."
+      ],
+      "narration": "Hình tướng là Đức Phật Thích Ca, nhưng bản thể chính là đạo sư, ân sư của mình."
+    },
+    {
+      "id": 7,
+      "duration": 10,
+      "camera": {
+        "x": 0.4924,
+        "y": 0.3497,
+        "zoom": 2.2
+      },
+      "spotlight": [
+        {
+          "shape": "ellipse",
+          "x0": 0.4466,
+          "y0": 0.3197,
+          "x1": 0.5382,
+          "y1": 0.3846
+        }
+      ],
+      "captions": [
+        "Trong tim Ngài là Đức Kim Cương Trì thân xanh dương. Trong tim Đức Kim Cương Trì là chủng tự HUM."
+      ],
+      "narration": "Trong tim Ngài là Đức Kim Cương Trì thân xanh dương. Trong tim Đức Kim Cương Trì là chủng tự HUM."
+    },
+    {
+      "id": 8,
+      "duration": 8,
+      "camera": {
+        "x": 0.4924,
+        "y": 0.3247,
+        "zoom": 1.15
+      },
+      "spotlight": [
+        {
+          "shape": "rect",
+          "x0": 0.1298,
+          "y0": 0.2148,
+          "x1": 0.855,
+          "y1": 0.472
+        }
+      ],
+      "captions": [
+        "Từ tim Đức Thích Ca phóng ra những tia sáng: lên phía sau đỉnh đầu, sang bên phải và bên trái."
+      ],
+      "narration": "Từ tim Đức Thích Ca phóng ra những tia sáng: lên phía sau đỉnh đầu, sang bên phải và bên trái."
+    },
+    {
+      "id": 9,
+      "duration": 10,
+      "camera": {
+        "x": 0.4924,
+        "y": 0.1349,
+        "zoom": 1.45
+      },
+      "spotlight": [
+        {
+          "shape": "rect",
+          "x0": 0.3397,
+          "y0": 0.0,
+          "x1": 0.6489,
+          "y1": 0.2622
+        }
+      ],
+      "captions": [
+        "Phía sau, trên cao là dòng Gia trì tu tập, bắt nguồn từ Đức Kim Cương Trì, truyền liên tục đến đạo sư của chúng ta."
+      ],
+      "narration": "Phía sau, trên cao là dòng Gia trì tu tập, bắt nguồn từ Đức Kim Cương Trì, truyền liên tục đến đạo sư của chúng ta."
+    },
+    {
+      "id": 10,
+      "duration": 9,
+      "camera": {
+        "x": 0.1718,
+        "y": 0.2597,
+        "zoom": 1.45
+      },
+      "spotlight": [
+        {
+          "shape": "ellipse",
+          "x0": 0.0,
+          "y0": 0.0949,
+          "x1": 0.3435,
+          "y1": 0.4196
+        }
+      ],
+      "captions": [
+        "Bên phải Đức Phật (bên trái người xem) là dòng Quảng hạnh, đứng đầu là Đức Di Lặc: phần phương tiện, Lục độ và Bồ-đề tâm."
+      ],
+      "narration": "Bên phải Đức Phật là dòng Quảng hạnh, đứng đầu là Đức Di Lặc: phần phương tiện, Lục độ và Bồ-đề tâm."
+    },
+    {
+      "id": 11,
+      "duration": 9,
+      "camera": {
+        "x": 0.8282,
+        "y": 0.2597,
+        "zoom": 1.45
+      },
+      "spotlight": [
+        {
+          "shape": "ellipse",
+          "x0": 0.6374,
+          "y0": 0.0949,
+          "x1": 1.0,
+          "y1": 0.4196
+        }
+      ],
+      "captions": [
+        "Bên trái Đức Phật (bên phải người xem) là dòng Tri kiến thâm sâu, đứng đầu là Đức Văn Thù: phần trí tuệ về tánh không."
+      ],
+      "narration": "Bên trái Đức Phật là dòng Tri kiến thâm sâu, đứng đầu là Đức Văn Thù: phần trí tuệ về tánh không."
+    },
+    {
+      "id": 12,
+      "duration": 8,
+      "camera": {
+        "x": 0.5,
+        "y": 0.3247,
+        "zoom": 1.0
+      },
+      "spotlight": [
+        {
+          "shape": "ellipse",
+          "x0": 0.0,
+          "y0": 0.2947,
+          "x1": 0.3435,
+          "y1": 0.4196
+        },
+        {
+          "shape": "ellipse",
+          "x0": 0.6374,
+          "y0": 0.2947,
+          "x1": 1.0,
+          "y1": 0.4196
+        }
+      ],
+      "captions": [
+        "Quanh các dòng truyền thừa là tất cả các bậc thầy đã trao truyền giáo pháp cho chúng ta, không thiếu một vị."
+      ],
+      "narration": "Quanh các dòng truyền thừa là tất cả các bậc thầy đã trao truyền giáo pháp cho chúng ta, không thiếu một vị."
+    },
+    {
+      "id": 13,
+      "duration": 9,
+      "camera": {
+        "x": 0.4885,
+        "y": 0.502,
+        "zoom": 2.2
+      },
+      "spotlight": [
+        {
+          "shape": "ellipse",
+          "x0": 0.4084,
+          "y0": 0.467,
+          "x1": 0.5687,
+          "y1": 0.537
+        }
+      ],
+      "captions": [
+        "Phía trước Đức Phật là đạo sư gốc. Trong bức thangka này là Đức Tông Khách Ba cùng hai vị trưởng tử."
+      ],
+      "narration": "Phía trước Đức Phật là đạo sư gốc. Trong bức thangka này là Đức Tông Khách Ba cùng hai vị trưởng tử."
+    },
+    {
+      "id": 14,
+      "duration": 10,
+      "camera": {
+        "x": 0.4924,
+        "y": 0.5544,
+        "zoom": 1.5
+      },
+      "spotlight": [
+        {
+          "shape": "rect",
+          "x0": 0.1069,
+          "y0": 0.477,
+          "x1": 0.8855,
+          "y1": 0.6169
+        }
+      ],
+      "captions": [
+        "Phía trước nữa là mười vòng hội chúng. Các tầng trên cùng là chư Bổn tôn, từ Tối thượng Du-già xuống Sự bộ."
+      ],
+      "narration": "Phía trước nữa là mười vòng hội chúng. Các tầng trên cùng là chư Bổn tôn, từ Tối thượng Du-già xuống Sự bộ."
+    },
+    {
+      "id": 15,
+      "duration": 12,
+      "camera": {
+        "x": 0.4924,
+        "y": 0.6993,
+        "zoom": 1.3
+      },
+      "spotlight": [
+        {
+          "shape": "rect",
+          "x0": 0.0687,
+          "y0": 0.5969,
+          "x1": 0.9275,
+          "y1": 0.7992
+        }
+      ],
+      "captions": [
+        "Tiếp đến chư Phật, chư Bồ Tát, Duyên Giác, Thanh Văn, Dũng sĩ và Không Hành nữ, rồi chư Hộ Pháp xuất thế gian."
+      ],
+      "narration": "Tiếp đến chư Phật, chư Bồ Tát, Duyên Giác, Thanh Văn, Dũng sĩ và Không Hành nữ, rồi chư Hộ Pháp xuất thế gian."
+    },
+    {
+      "id": 16,
+      "duration": 8,
+      "camera": {
+        "x": 0.4924,
+        "y": 0.8192,
+        "zoom": 1.5
+      },
+      "spotlight": [
+        {
+          "shape": "rect",
+          "x0": 0.0687,
+          "y0": 0.7767,
+          "x1": 0.9313,
+          "y1": 0.8616
+        }
+      ],
+      "captions": [
+        "Quanh chân hội chúng là bốn vị Thiên Vương hộ trì bốn phương."
+      ],
+      "narration": "Quanh chân hội chúng là bốn vị Thiên Vương hộ trì bốn phương."
+    },
+    {
+      "id": 17,
+      "duration": 10,
+      "camera": {
+        "x": 0.5,
+        "y": 0.5,
+        "zoom": 1.0
+      },
+      "spotlight": [],
+      "captions": [
+        "Phật bảo: Đức Thích Ca, chư đạo sư, chư Bổn tôn và chư Phật.",
+        "Tăng bảo: Bồ Tát, Duyên Giác, Thanh Văn, Dũng sĩ, Không Hành và Hộ Pháp.",
+        "Pháp bảo: kinh sách trước mỗi vị, biểu trưng công đức chứng ngộ."
+      ],
+      "narration": "Phật bảo là Đức Thích Ca, chư đạo sư, chư Bổn tôn và chư Phật. Tăng bảo là Bồ Tát, Duyên Giác, Thanh Văn, Dũng sĩ, Không Hành và Hộ Pháp. Pháp bảo là kinh sách trước mỗi vị, biểu trưng công đức chứng ngộ."
+    },
+    {
+      "id": 18,
+      "duration": 10,
+      "camera": {
+        "x": 0.5,
+        "y": 0.5,
+        "zoom": 1.0
+      },
+      "spotlight": [],
+      "captions": [
+        "Hãy quán đây là thật, không phải tranh vẽ. Mỗi sáng thức dậy, dành một đến hai phút quán ruộng phước này."
+      ],
+      "narration": "Hãy quán đây là thật, không phải tranh vẽ. Mỗi sáng thức dậy, dành một đến hai phút quán ruộng phước này."
+    }
+  ]
+}
