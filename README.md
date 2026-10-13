@@ -9,6 +9,7 @@ Bộ dữ liệu để Claude Code dựng video dọc 9:16 (Remotion) hướng d
 - `data/subtitles.srt` — phụ đề
 - `data/narration.txt` — lời đọc 18 câu (đọc theo khi thu âm)
 - `scripts/align_audio.py` — chia file lời đọc thành 18 đoạn theo khoảng lặng
+- `data/ai-clips.json`, `scripts/gen_seedance.py`, `assets/clips/` — clip mở đầu/kết tạo bằng Seedance 2.0 (chỉ cảnh hành giả, không có chư tôn)
 - `audio/` — đặt `narration.mp3` (lời đọc) và/hoặc `music.mp3` (nhạc nền) vào đây
 - `CLAUDE.md` — hướng dẫn cho Claude Code
 - `out/` — video dựng xong

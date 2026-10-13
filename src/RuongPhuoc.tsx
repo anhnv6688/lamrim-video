@@ -6,7 +6,8 @@ import {
   AbsoluteFill,
   Audio,
   Easing,
-  Img,
+  OffthreadVideo,
+  Sequence,
   continueRender,
   delayRender,
   interpolate,
@@ -14,12 +15,15 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import clipsData from "../data/ai-clips.json";
 import stepsData from "../data/steps.json";
 
 export type RuongPhuocProps = {
   durations: number[];
   narration: string | null;
   music: string | null;
+  intro: boolean;
+  outro: boolean;
 };
 
 type Spot = { shape: string; x0: number; y0: number; x1: number; y1: number };
@@ -41,6 +45,9 @@ const KEN_BURNS = 0.035;
 const FEATHER = 30; // px theo toạ độ ảnh
 const CAPTION_IN_S = 0.6;
 const CAPTION_OUT_S = 0.4;
+// Clip mở đầu / kết (Seedance) chồng lên phần thangka bằng crossfade 1 s.
+const CLIP_FADE_S = 1;
+const clipDuration = (id: string) => clipsData.clips.find((c) => c.id === id)?.duration ?? 0;
 
 const C = {
   bg: "#14122B",
@@ -156,10 +163,25 @@ const LightRays: React.FC<{ t: number; fade: number }> = ({ t, fade }) => {
   );
 };
 
-export const RuongPhuoc: React.FC<RuongPhuocProps> = ({ durations, narration, music }) => {
-  useFonts();
+// Tổng số khung hình của phần 18 bước thangka.
+export const stepsFrames = (durations: number[], fps: number) =>
+  Math.round(durations.reduce((a, b) => a + b, 0) * fps);
+
+// Thời điểm (khung hình) bắt đầu phần thangka và tổng thời lượng video.
+export const layout = (p: Pick<RuongPhuocProps, "durations" | "intro" | "outro">, fps: number) => {
+  const fade = Math.round(CLIP_FADE_S * fps);
+  const introFrames = p.intro ? Math.round(clipDuration("intro") * fps) : 0;
+  const outroFrames = p.outro ? Math.round(clipDuration("outro") * fps) : 0;
+  const main = stepsFrames(p.durations, fps);
+  const mainStart = p.intro ? introFrames - fade : 0;
+  const outroStart = mainStart + main - (p.outro ? fade : 0);
+  return { fade, introFrames, outroFrames, main, mainStart, outroStart, total: p.outro ? outroStart + outroFrames : mainStart + main };
+};
+
+const Steps: React.FC<{ durations: number[] }> = ({ durations }) => {
   const frame = useCurrentFrame();
-  const { fps, durationInFrames } = useVideoConfig();
+  const { fps } = useVideoConfig();
+  const durationInFrames = stepsFrames(durations, fps);
 
   // Mốc khung hình bắt đầu từng bước.
   const starts: number[] = [];
@@ -226,25 +248,8 @@ export const RuongPhuoc: React.FC<RuongPhuocProps> = ({ durations, narration, mu
   const capOpacity = fadeOf(capLocal, capFrames);
   const labelOpacity = fadeOf(local, stepFrames);
 
-  const musicVolume = (f: number) => {
-    const base = narration ? 0.15 : 0.5;
-    return (
-      base *
-      Math.min(
-        interpolate(f, [0, 2 * fps], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
-        interpolate(f, [durationInFrames - 3 * fps, durationInFrames], [1, 0], {
-          extrapolateLeft: "clamp",
-          extrapolateRight: "clamp",
-        }),
-      )
-    );
-  };
-
   return (
     <AbsoluteFill style={{ backgroundColor: C.bg, fontFamily: "Inter, sans-serif" }}>
-      {narration ? <Audio src={staticFile(narration)} /> : null}
-      {music ? <Audio src={staticFile(music)} loop volume={musicVolume} /> : null}
-
       <div style={{ position: "absolute", left: 0, top: 0, width: VW, height: VH, overflow: "hidden" }}>
         <svg
           width={IW}
@@ -315,58 +320,126 @@ export const RuongPhuoc: React.FC<RuongPhuocProps> = ({ durations, narration, mu
         </svg>
       </div>
 
-      {/* Khung phụ đề */}
-      <div
-        style={{
-          position: "absolute",
-          left: 0,
-          top: VH,
-          width: VW,
-          height: 1920 - VH,
-          padding: "22px 36px 30px",
-          boxSizing: "border-box",
-        }}
-      >
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            boxSizing: "border-box",
-            background: C.box,
-            border: `2px solid ${C.border}`,
-            borderRadius: 24,
-            padding: "22px 34px",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <div
-            style={{
-              color: C.label,
-              fontSize: 26,
-              fontWeight: 500,
-              letterSpacing: 0.3,
-              opacity: labelOpacity,
-              marginBottom: 10,
-            }}
-          >
-            Bước {steps[i].id}/{N} · Quán tưởng ruộng phước
-          </div>
-          <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
-            <div
-              style={{
-                color: "#FFFFFF",
-                fontSize: 40,
-                fontWeight: 500,
-                lineHeight: 1.3,
-                opacity: capOpacity,
-              }}
-            >
-              {caps[ci]}
-            </div>
-          </div>
-        </div>
+      <CaptionBox
+        label={`Bước ${steps[i].id}/${N} · Quán tưởng ruộng phước`}
+        text={caps[ci]}
+        labelOpacity={labelOpacity}
+        textOpacity={capOpacity}
+      />
+    </AbsoluteFill>
+  );
+};
+
+// Khung phụ đề dải dưới 320px.
+const CaptionBox: React.FC<{ label: string; text: string; labelOpacity: number; textOpacity: number }> = ({
+  label,
+  text,
+  labelOpacity,
+  textOpacity,
+}) => (
+  <div
+    style={{
+      position: "absolute",
+      left: 0,
+      top: VH,
+      width: VW,
+      height: 1920 - VH,
+      padding: "22px 36px 30px",
+      boxSizing: "border-box",
+    }}
+  >
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        boxSizing: "border-box",
+        background: C.box,
+        border: `2px solid ${C.border}`,
+        borderRadius: 24,
+        padding: "22px 34px",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <div style={{ color: C.label, fontSize: 26, fontWeight: 500, letterSpacing: 0.3, opacity: labelOpacity, marginBottom: 10 }}>
+        {label}
       </div>
+      <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
+        <div style={{ color: "#FFFFFF", fontSize: 40, fontWeight: 500, lineHeight: 1.3, opacity: textOpacity }}>{text}</div>
+      </div>
+    </div>
+  </div>
+);
+
+// Clip AI mở đầu / kết: chỉ là cảnh hành giả, không có chư tôn. Khung phụ đề hiện tên bài.
+const Clip: React.FC<{ id: string; frames: number; fadeIn: number; fadeOut: number }> = ({ id, frames, fadeIn, fadeOut }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const opacity = Math.min(
+    fadeIn ? interpolate(frame, [0, fadeIn], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : 1,
+    fadeOut ? interpolate(frame, [frames - fadeOut, frames], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : 1,
+  );
+  const textOpacity = Math.min(
+    // Chữ hiện sau khi crossfade vào xong và tắt trước khi crossfade ra, tránh chồng lên phụ đề bước.
+    interpolate(frame, [fadeIn + 0.2 * fps, fadeIn + 0.9 * fps], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+    interpolate(frame, [frames - fadeOut - 0.8 * fps, frames - fadeOut - 0.1 * fps], [1, 0], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    }),
+  );
+  return (
+    <AbsoluteFill style={{ backgroundColor: C.bg, opacity }}>
+      <div style={{ position: "absolute", left: 0, top: 0, width: VW, height: VH, overflow: "hidden" }}>
+        <OffthreadVideo
+          src={staticFile(`clips/${id}.mp4`)}
+          muted
+          style={{ width: VW, height: VH, objectFit: "cover", objectPosition: "50% 30%" }}
+        />
+      </div>
+      <CaptionBox label="Quán tưởng ruộng phước" text={stepsData.title} labelOpacity={textOpacity} textOpacity={textOpacity} />
+    </AbsoluteFill>
+  );
+};
+
+export const RuongPhuoc: React.FC<RuongPhuocProps> = ({ durations, narration, music, intro, outro }) => {
+  useFonts();
+  const { fps, durationInFrames } = useVideoConfig();
+  const L = layout({ durations, intro, outro }, fps);
+
+  const musicVolume = (f: number) => {
+    const base = narration ? 0.15 : 0.5;
+    return (
+      base *
+      Math.min(
+        interpolate(f, [0, 2 * fps], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+        interpolate(f, [durationInFrames - 3 * fps, durationInFrames], [1, 0], {
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+        }),
+      )
+    );
+  };
+
+  return (
+    <AbsoluteFill style={{ backgroundColor: C.bg, fontFamily: "Inter, sans-serif" }}>
+      {music ? <Audio src={staticFile(music)} loop volume={musicVolume} /> : null}
+
+      <Sequence from={L.mainStart} durationInFrames={L.main} name="Thangka 18 bước">
+        <Steps durations={durations} />
+        {narration ? <Audio src={staticFile(narration)} /> : null}
+      </Sequence>
+
+      {intro ? (
+        <Sequence from={0} durationInFrames={L.introFrames} name="Mở đầu (Seedance)">
+          <Clip id="intro" frames={L.introFrames} fadeIn={0} fadeOut={L.fade} />
+        </Sequence>
+      ) : null}
+
+      {outro ? (
+        <Sequence from={L.outroStart} durationInFrames={L.outroFrames} name="Kết (Seedance)">
+          <Clip id="outro" frames={L.outroFrames} fadeIn={L.fade} fadeOut={L.fade} />
+        </Sequence>
+      ) : null}
     </AbsoluteFill>
   );
 };

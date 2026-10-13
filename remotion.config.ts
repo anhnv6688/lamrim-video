@@ -44,7 +44,12 @@ const music = findAudio("music");
 if (narration) sync(`audio/${narration}`, narration);
 if (music) sync(`audio/${music}`, music);
 
+// Clip phụ do scripts/gen_seedance.py tạo (assets/clips/*.mp4).
+fs.mkdirSync(path.join(pub, "clips"), { recursive: true });
+const intro = sync("assets/clips/intro.mp4", "clips/intro.mp4");
+const outro = sync("assets/clips/outro.mp4", "clips/outro.mp4");
+
 fs.writeFileSync(
   path.join(pub, "media.json"),
-  JSON.stringify({ timings: hasTimings, narration, music }, null, 2),
+  JSON.stringify({ timings: hasTimings, narration, music, intro, outro }, null, 2),
 );

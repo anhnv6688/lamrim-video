@@ -1,0 +1,18 @@
+{
+  "note": "Clip AI (Seedance 2.0 qua OpenRouter) chỉ cho cảnh phụ: KHÔNG có hình chư tôn, tượng Phật, thangka hay chữ. Thangka trong video luôn là ảnh gốc. Seedance không nhận ảnh tham chiếu có người thật, nên nhân vật giữa các clip được giữ giống nhau bằng mô tả trong prompt.",
+  "model": "bytedance/seedance-2.0",
+  "resolution": "1080p",
+  "aspect_ratio": "9:16",
+  "clips": [
+    {
+      "id": "intro",
+      "duration": 8,
+      "prompt": "Vertical cinematic shot, photorealistic. A Vietnamese Buddhist practitioner in a simple brown robe sits cross-legged in meditation on a cushion in a quiet, dark wooden shrine room at night, seen from a three-quarter side angle, subject centered in the frame. Eyes gently closed, calm face, hands resting in the lap, slow steady breathing. A few small butter lamps glow warm gold in the foreground, a thin ribbon of incense smoke drifts upward. Slow gentle push-in toward the practitioner's face. In the final two seconds the warm golden lamp light softly blooms and fills the frame. Soft, serene, deep indigo and warm amber tones, shallow depth of field. The wall behind is plain dark wood and completely out of focus. No statues, no Buddha images, no paintings, no thangka, no deities, no text, no letters, no logos, no subtitles."
+    },
+    {
+      "id": "outro",
+      "duration": 8,
+      "prompt": "Vertical cinematic shot, photorealistic. A young East Asian Buddhist monk with a clean-shaven head, wearing a simple plain brown robe, sits cross-legged on a dark cushion beside an open wooden window at dawn, subject centered in the frame. Soft early-morning sunlight slowly rises and warms his face. He slowly opens his eyes, smiles gently, and brings his palms together at his heart in a respectful gesture. A thin ribbon of incense smoke drifts in the light, a few small butter lamps glow on the wooden floor. Very slow pull-back. Peaceful, hopeful, soft gold and pale blue tones, shallow depth of field. Outside the window only a soft blurred sky and distant misty hills. No statues, no Buddha images, no paintings, no thangka, no deities, no text, no letters, no logos, no subtitles."
+    }
+  ]
+}
