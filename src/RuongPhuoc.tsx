@@ -47,7 +47,15 @@ const CAPTION_IN_S = 0.6;
 const CAPTION_OUT_S = 0.4;
 // Clip mở đầu / kết (Seedance) chồng lên phần thangka bằng crossfade 1 s.
 const CLIP_FADE_S = 1;
-const clipDuration = (id: string) => clipsData.clips.find((c) => c.id === id)?.duration ?? 0;
+// Thời lượng clip theo id; clip "pair" được cắt thành intro/outro theo "split".
+const clipDuration = (id: string) => {
+  for (const c of clipsData.clips) {
+    if (c.id === id) return c.duration;
+    const part = c.split?.find((p) => p.id === id);
+    if (part) return part.end - part.start;
+  }
+  return 0;
+};
 
 const C = {
   bg: "#14122B",
@@ -375,9 +383,16 @@ const CaptionBox: React.FC<{ label: string; text: string; labelOpacity: number; 
 const Clip: React.FC<{ id: string; frames: number; fadeIn: number; fadeOut: number }> = ({ id, frames, fadeIn, fadeOut }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  // Chuyển cảnh qua nền tối (không chồng hình hành giả lên thangka):
+  // nửa đầu đoạn fade, clip tối dần trên nền; nửa sau, cả lớp mờ đi để lộ phần thangka.
+  const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
   const opacity = Math.min(
-    fadeIn ? interpolate(frame, [0, fadeIn], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : 1,
-    fadeOut ? interpolate(frame, [frames - fadeOut, frames], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }) : 1,
+    fadeIn ? interpolate(frame, [0, fadeIn / 2], [0, 1], clamp) : 1,
+    fadeOut ? interpolate(frame, [frames - fadeOut / 2, frames], [1, 0], clamp) : 1,
+  );
+  const videoOpacity = Math.min(
+    fadeIn ? interpolate(frame, [fadeIn / 2, fadeIn], [0, 1], clamp) : 1,
+    fadeOut ? interpolate(frame, [frames - fadeOut, frames - fadeOut / 2], [1, 0], clamp) : 1,
   );
   const textOpacity = Math.min(
     // Chữ hiện sau khi crossfade vào xong và tắt trước khi crossfade ra, tránh chồng lên phụ đề bước.
@@ -389,7 +404,7 @@ const Clip: React.FC<{ id: string; frames: number; fadeIn: number; fadeOut: numb
   );
   return (
     <AbsoluteFill style={{ backgroundColor: C.bg, opacity }}>
-      <div style={{ position: "absolute", left: 0, top: 0, width: VW, height: VH, overflow: "hidden" }}>
+      <div style={{ position: "absolute", left: 0, top: 0, width: VW, height: VH, overflow: "hidden", opacity: videoOpacity }}>
         <OffthreadVideo
           src={staticFile(`clips/${id}.mp4`)}
           muted

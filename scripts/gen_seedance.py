@@ -1,9 +1,11 @@
 """Tạo clip phụ (mở đầu / kết) bằng Seedance 2.0 qua OpenRouter.
 
-Cách dùng:  python3 scripts/gen_seedance.py intro outro      (mặc định: tất cả clip trong data/ai-clips.json)
-            python3 scripts/gen_seedance.py outro --force    (tạo lại dù đã có file)
+Cách dùng:  python3 scripts/gen_seedance.py                  (tạo tất cả clip trong data/ai-clips.json)
+            python3 scripts/gen_seedance.py pair --force     (tạo lại dù đã có file)
+            python3 scripts/gen_seedance.py --split-only     (chỉ cắt lại theo "split", không gọi API)
 Yêu cầu:    biến môi trường OPENROUTER_API_KEY; ffmpeg (để lấy khung hình tham chiếu).
 Kết quả:    assets/clips/<id>.mp4 và assets/clips/<id>.json (prompt, job id, chi phí).
+            Clip có "split" được cắt thêm thành assets/clips/<split id>.mp4 (vd. intro, outro).
 
 Chỉ dùng cho cảnh không có chư tôn — xem ghi chú trong data/ai-clips.json.
 """
@@ -14,6 +16,7 @@ KEY = os.environ.get('OPENROUTER_API_KEY') or sys.exit('Thiếu OPENROUTER_API_K
 cfg = json.load(open('data/ai-clips.json'))
 args = [a for a in sys.argv[1:] if not a.startswith('--')]
 force = '--force' in sys.argv
+split_only = '--split-only' in sys.argv
 ids = args or [c['id'] for c in cfg['clips']]
 os.makedirs('assets/clips', exist_ok=True)
 
@@ -43,9 +46,21 @@ def reference_frame(clip_id):
     return 'data:image/jpeg;base64,' + base64.b64encode(jpg).decode()
 
 
+def split(clip):
+    """Cắt clip nhiều cảnh thành các đoạn (mã hoá lại để cắt đúng khung hình)."""
+    src = f'assets/clips/{clip["id"]}.mp4'
+    for part in clip.get('split', []):
+        dst = f'assets/clips/{part["id"]}.mp4'
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', str(part['start']), '-to', str(part['end']), '-i', src, '-an',
+                        '-c:v', 'libx264', '-crf', '16', '-preset', 'slow', '-pix_fmt', 'yuv420p', dst], check=True)
+        print(f'{clip["id"]}: cắt {part["start"]}–{part["end"]}s → {dst}')
+
+
 for cid in ids:
     clip = next((c for c in cfg['clips'] if c['id'] == cid), None) or sys.exit(f'Không có clip "{cid}"')
     out = f'assets/clips/{cid}.mp4'
+    if split_only:
+        split(clip); continue
     if os.path.exists(out) and not force:
         print(f'{cid}: đã có {out}, bỏ qua (dùng --force để tạo lại)'); continue
 
@@ -71,3 +86,4 @@ for cid in ids:
     json.dump({'id': cid, 'job': job['id'], 'model': body['model'], 'prompt': clip['prompt'], 'cost_usd': cost,
                'reference': clip.get('reference')}, open(f'assets/clips/{cid}.json', 'w'), ensure_ascii=False, indent=2)
     print(f'{cid}: xong → {out}  (chi phí ${cost})', flush=True)
+    split(clip)

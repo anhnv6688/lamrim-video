@@ -1,0 +1,8 @@
+{
+  "id": "pair",
+  "job": "gen-vid-1791866201-37urAqc4IOBtabdr7NuR",
+  "model": "bytedance/seedance-2.0",
+  "prompt": "Vertical cinematic film, photorealistic, two shots with the SAME person throughout. The person: a young East Asian Buddhist monk, about 25 years old, clean-shaven head, calm oval face, wearing a simple plain brown robe, sitting cross-legged on a dark round cushion. Shot 1 (0 to 7 seconds): night, a quiet dark wooden shrine room. The monk meditates with eyes gently closed, hands resting in the lap, slow steady breathing, seen from a three-quarter side angle, centered in the frame. A few small butter lamps glow warm gold on the wooden floor in front of him, a thin ribbon of incense smoke drifts upward. Slow gentle push-in toward his face. At the end of shot 1 the warm golden lamp light softly blooms and fills the whole frame. Shot 2 (7 to 15 seconds): the same monk, same robe, same cushion, now beside an open wooden window at dawn, centered in the frame. Soft early-morning sunlight slowly warms his face. He slowly opens his eyes, smiles gently, and brings his palms together at his heart in a respectful gesture. A thin ribbon of incense smoke drifts in the light, a few small butter lamps on the floor. Very slow pull-back. Outside the window only a soft blurred sky and distant misty hills. Serene mood, deep indigo and warm amber tones in shot 1, soft gold and pale blue tones in shot 2, shallow depth of field. No statues, no Buddha images, no paintings, no thangka, no deities, no text, no letters, no logos, no subtitles.",
+  "cost_usd": 5.6288925,
+  "reference": null
+}

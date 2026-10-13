@@ -1,8 +1,1 @@
-{
-  "id": "intro",
-  "job": "gen-vid-1791863757-NPJ2MSXyECWzI7tQn1tv",
-  "model": "bytedance/seedance-2.0",
-  "prompt": "Vertical cinematic shot, photorealistic. A Vietnamese Buddhist practitioner in a simple brown robe sits cross-legged in meditation on a cushion in a quiet, dark wooden shrine room at night, seen from a three-quarter side angle, subject centered in the frame. Eyes gently closed, calm face, hands resting in the lap, slow steady breathing. A few small butter lamps glow warm gold in the foreground, a thin ribbon of incense smoke drifts upward. Slow gentle push-in toward the practitioner's face. In the final two seconds the warm golden lamp light softly blooms and fills the frame. Soft, serene, deep indigo and warm amber tones, shallow depth of field. The wall behind is plain dark wood and completely out of focus. No statues, no Buddha images, no paintings, no thangka, no deities, no text, no letters, no logos, no subtitles.",
-  "cost_usd": 3.0093525,
-  "reference": null
-}
+{"id": "intro", "from": "pair", "note": "Cắt 0–5.6 s từ assets/clips/pair.mp4 (xem pair.json)"}

@@ -29,9 +29,9 @@ Repo này dựng video dọc 9:16 hướng dẫn **quán tưởng ruộng phư�
 ## Clip mở đầu / kết (Seedance 2.0)
 
 - Người dùng đã chọn hướng "kết hợp": thangka vẫn là ảnh gốc; AI chỉ tạo cảnh phụ **không có chư tôn, tượng, tranh hay chữ** — một hành giả ngồi thiền (mở đầu) và mở mắt chắp tay lúc bình minh (kết).
-- Prompt và thời lượng ở `data/ai-clips.json`. Tạo bằng `python3 scripts/gen_seedance.py [intro] [outro] [--force]` (cần `OPENROUTER_API_KEY`, ~$3 mỗi clip 8 s 1080p). File ra `assets/clips/<id>.mp4` kèm `<id>.json` (job, chi phí). Không tự tạo lại clip khi chưa được người dùng đồng ý vì tốn phí.
-- Seedance từ chối ảnh tham chiếu có người thật, nên nhân vật giữa hai clip được giữ giống nhau bằng mô tả trong prompt.
-- Nếu có `assets/clips/intro.mp4` / `outro.mp4`, composition tự chèn vào trước bước 1 / sau bước 18, crossfade 1 s; khung phụ đề hiện tên bài (`title` trong `steps.json`). Lời đọc và `timings.json` vẫn chỉ áp cho 18 bước (lời đọc bắt đầu khi vào bước 1).
+- Prompt ở `data/ai-clips.json`. Seedance từ chối ảnh tham chiếu có người thật, nên để nhân vật đồng nhất, **cả hai cảnh được tạo trong một lần gọi** (clip `pair` 15 s, 2 cảnh) rồi cắt theo `split` thành `intro` (0–5.6 s) và `outro` (7.6–15 s), bỏ đoạn hoà hình giữa hai cảnh.
+- Tạo: `python3 scripts/gen_seedance.py pair --force` (cần `OPENROUTER_API_KEY`, ~$5.6 cho 15 s 1080p); chỉ cắt lại: `python3 scripts/gen_seedance.py --split-only`. File ra `assets/clips/*.mp4`, `pair.json` ghi job và chi phí. Không tự tạo lại clip khi chưa được người dùng đồng ý vì tốn phí.
+- Nếu có `assets/clips/intro.mp4` / `outro.mp4`, composition tự chèn vào trước bước 1 / sau bước 18, chuyển cảnh 1 s qua nền tối (không chồng hình hành giả lên thangka); khung phụ đề hiện tên bài (`title` trong `steps.json`). Lời đọc và `timings.json` vẫn chỉ áp cho 18 bước (lời đọc bắt đầu khi vào bước 1).
 
 ## Quy trình
 

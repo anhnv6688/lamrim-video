@@ -1,8 +1,1 @@
-{
-  "id": "outro",
-  "job": "gen-vid-1791864028-V0lc1XBGfeoGfFtp48Ja",
-  "model": "bytedance/seedance-2.0",
-  "prompt": "Vertical cinematic shot, photorealistic. A young East Asian Buddhist monk with a clean-shaven head, wearing a simple plain brown robe, sits cross-legged on a dark cushion beside an open wooden window at dawn, subject centered in the frame. Soft early-morning sunlight slowly rises and warms his face. He slowly opens his eyes, smiles gently, and brings his palms together at his heart in a respectful gesture. A thin ribbon of incense smoke drifts in the light, a few small butter lamps glow on the wooden floor. Very slow pull-back. Peaceful, hopeful, soft gold and pale blue tones, shallow depth of field. Outside the window only a soft blurred sky and distant misty hills. No statues, no Buddha images, no paintings, no thangka, no deities, no text, no letters, no logos, no subtitles.",
-  "cost_usd": 3.0093525,
-  "reference": null
-}
+{"id": "outro", "from": "pair", "note": "Cắt 7.6–15 s từ assets/clips/pair.mp4 (xem pair.json)"}

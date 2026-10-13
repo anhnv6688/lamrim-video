@@ -1,18 +1,25 @@
 {
-  "note": "Clip AI (Seedance 2.0 qua OpenRouter) chỉ cho cảnh phụ: KHÔNG có hình chư tôn, tượng Phật, thangka hay chữ. Thangka trong video luôn là ảnh gốc. Seedance không nhận ảnh tham chiếu có người thật, nên nhân vật giữa các clip được giữ giống nhau bằng mô tả trong prompt.",
+  "note": "Clip AI (Seedance 2.0 qua OpenRouter) chỉ cho cảnh phụ: KHÔNG có hình chư tôn, tượng Phật, thangka hay chữ. Thangka trong video luôn là ảnh gốc. Seedance không nhận ảnh tham chiếu có người thật, nên để nhân vật mở đầu và kết đồng nhất, cả hai cảnh được tạo trong MỘT lần gọi (clip 'pair' 15 s gồm 2 cảnh) rồi cắt ra theo 'split'.",
   "model": "bytedance/seedance-2.0",
   "resolution": "1080p",
   "aspect_ratio": "9:16",
   "clips": [
     {
-      "id": "intro",
-      "duration": 8,
-      "prompt": "Vertical cinematic shot, photorealistic. A Vietnamese Buddhist practitioner in a simple brown robe sits cross-legged in meditation on a cushion in a quiet, dark wooden shrine room at night, seen from a three-quarter side angle, subject centered in the frame. Eyes gently closed, calm face, hands resting in the lap, slow steady breathing. A few small butter lamps glow warm gold in the foreground, a thin ribbon of incense smoke drifts upward. Slow gentle push-in toward the practitioner's face. In the final two seconds the warm golden lamp light softly blooms and fills the frame. Soft, serene, deep indigo and warm amber tones, shallow depth of field. The wall behind is plain dark wood and completely out of focus. No statues, no Buddha images, no paintings, no thangka, no deities, no text, no letters, no logos, no subtitles."
-    },
-    {
-      "id": "outro",
-      "duration": 8,
-      "prompt": "Vertical cinematic shot, photorealistic. A young East Asian Buddhist monk with a clean-shaven head, wearing a simple plain brown robe, sits cross-legged on a dark cushion beside an open wooden window at dawn, subject centered in the frame. Soft early-morning sunlight slowly rises and warms his face. He slowly opens his eyes, smiles gently, and brings his palms together at his heart in a respectful gesture. A thin ribbon of incense smoke drifts in the light, a few small butter lamps glow on the wooden floor. Very slow pull-back. Peaceful, hopeful, soft gold and pale blue tones, shallow depth of field. Outside the window only a soft blurred sky and distant misty hills. No statues, no Buddha images, no paintings, no thangka, no deities, no text, no letters, no logos, no subtitles."
+      "id": "pair",
+      "duration": 15,
+      "prompt": "Vertical cinematic film, photorealistic, two shots with the SAME person throughout. The person: a young East Asian Buddhist monk, about 25 years old, clean-shaven head, calm oval face, wearing a simple plain brown robe, sitting cross-legged on a dark round cushion. Shot 1 (0 to 7 seconds): night, a quiet dark wooden shrine room. The monk meditates with eyes gently closed, hands resting in the lap, slow steady breathing, seen from a three-quarter side angle, centered in the frame. A few small butter lamps glow warm gold on the wooden floor in front of him, a thin ribbon of incense smoke drifts upward. Slow gentle push-in toward his face. At the end of shot 1 the warm golden lamp light softly blooms and fills the whole frame. Shot 2 (7 to 15 seconds): the same monk, same robe, same cushion, now beside an open wooden window at dawn, centered in the frame. Soft early-morning sunlight slowly warms his face. He slowly opens his eyes, smiles gently, and brings his palms together at his heart in a respectful gesture. A thin ribbon of incense smoke drifts in the light, a few small butter lamps on the floor. Very slow pull-back. Outside the window only a soft blurred sky and distant misty hills. Serene mood, deep indigo and warm amber tones in shot 1, soft gold and pale blue tones in shot 2, shallow depth of field. No statues, no Buddha images, no paintings, no thangka, no deities, no text, no letters, no logos, no subtitles.",
+      "split": [
+        {
+          "id": "intro",
+          "start": 0,
+          "end": 5.6
+        },
+        {
+          "id": "outro",
+          "start": 7.6,
+          "end": 15
+        }
+      ]
     }
   ]
 }
